@@ -179,7 +179,7 @@
       $(document).ready(function(){
         if(localStorage.speek != "false"){
           $("#speechText").html("Speech is enabled.");
-          var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person. Time out 20:01 hours";
+          var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person. Time out 20:01 hundred hours";
           msg = new SpeechSynthesisUtterance(msg);
           window.speechSynthesis.speak(msg);
         }else{
