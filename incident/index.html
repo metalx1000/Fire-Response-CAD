@@ -139,43 +139,24 @@
 
 <header class="intro-header site-heading" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=4798 Davis Blvd Naples, FL 34104&zoom=17&size=640x640&maptype=hybrid&markers=color:red%7C4798 Davis Blvd Naples, FL 34104&scale=1')"></header>
     <!-- Footer -->
-<!--
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
                         <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-volume-off fa-stack-1x fa-inverse" id="speech"></i>
+                            </span>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="copyright text-muted" id="speechText"></p>
+                    <p class="copyright text-muted">Copyright &copy; Kris Occhipinti 2015 - GPLv3</p>
                 </div>
             </div>
         </div>
     </footer>
--->
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -187,9 +168,24 @@
 
     <script>
       $(document).ready(function(){
-        var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person"
-        msg = new SpeechSynthesisUtterance(msg);
-        window.speechSynthesis.speak(msg);
+        if(localStorage.speek != "false"){
+          $("#speechText").html("Speech is enabled.");
+          var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person"
+          msg = new SpeechSynthesisUtterance(msg);
+          window.speechSynthesis.speak(msg);
+        }else{
+          $("#speechText").html("Speech is disabled.");
+        }
+
+        $("#speech").click(function(){
+          if(localStorage.speek != "false"){
+            localStorage.speek = "false";
+            $("#speechText").html("Speech is disabled.");
+          }else{
+            localStorage.speek = "true";
+            $("#speechText").html("Speech is enabled.");
+          }
+        });
       });
     </script>
 
