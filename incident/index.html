@@ -102,7 +102,7 @@
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <a href="https://www.google.com/maps/place/East+Naples+Fire+Control/@26.1422842,-81.7512605,15z/data=!4m5!1m2!2m1!1sgreater+naples+fire+station!3m1!1s0x0000000000000000:0x9bd93480c4b9c236">
-      <header class="intro-header site-heading" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=4798 Davis Blvd Naples, FL 34104&zoom=17&size=640x640&maptype=hybrid&markers=color:red%7C4798 Davis Blvd Naples, FL 34104&scale=1')">
+      <header class="intro-header site-heading" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=4798 Davis Blvd Naples, FL 34104&zoom=17&size=640x640&maptype=roadmap&markers=color:red%7C4798 Davis Blvd Naples, FL 34104&scale=1')">
     </a>
 <!--
         <div class="container site-heading">
@@ -124,16 +124,20 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
-                        <h3 class="post-title">
-                          Engine #20<br>Medic #20
-                        </h3>
                         <h3 class="post-subtitle">
                           Reference Sick Person
+                        </h3>
+                        <h3 class="post-title">
+                          Engine #20<br>Medic #20
                         </h3>
                     <p class="post-meta">Dispatch time Fri Aug 28 20:01:39 EDT 2015</p>
                 </div>
                 <hr>
+            </div>
+        </div>
+    </div>
 
+<header class="intro-header site-heading" style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=4798 Davis Blvd Naples, FL 34104&zoom=17&size=640x640&maptype=hybrid&markers=color:red%7C4798 Davis Blvd Naples, FL 34104&scale=1')"></header>
     <!-- Footer -->
 <!--
     <footer>
@@ -180,6 +184,14 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person"
+        msg = new SpeechSynthesisUtterance(msg);
+        window.speechSynthesis.speak(msg);
+      });
+    </script>
 
 </body>
 
