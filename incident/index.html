@@ -166,7 +166,7 @@
 
                     </ul>
                     <p class="copyright text-muted" id="speechText"></p>
-                    <p class="copyright text-muted">Copyright &copy; <a href="http://filmsbykris.com" target="_blank">Kris Occhipinti 2015 - <a href="http://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">GPLv3</a></p>
+                    <p class="copyright text-muted">Copyright &copy; <a href="http://filmsbykris.com" target="_blank">Kris Occhipinti 2015</a> - <a href="http://www.gnu.org/licenses/gpl-3.0.txt" target="_blank">GPLv3</a></p>
                 </div>
             </div>
         </div>
@@ -184,14 +184,9 @@
       var dispatchTime = new Date().getTime()/1000;
 
       $(document).ready(function(){
-        if(localStorage.speek != "false"){
-          $("#speechText").html("Speech is enabled.");
-          var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person. Time out 20:01 hundred hours";
-          msg = new SpeechSynthesisUtterance(msg);
-          window.speechSynthesis.speak(msg);
-        }else{
-          $("#speechText").html("Speech is disabled.");
-        }
+        
+        var msg = "Engine 20, Medic 20. Medical Call. 4798 Davis Blvd.  Reference Sick Person. Time out 20:01 hundred hours";
+        speech(msg);
 
         $("#speech").click(function(){
           if(localStorage.speek != "false"){
@@ -206,7 +201,11 @@
         var secondsOut = setInterval(function(){
           var seconds = sinceDispatch();
           $("#seconds").html(seconds);
-          if(seconds > 20){
+          if(seconds == 60){
+            speech("60 Seconds since Dispatch");
+          }else if(seconds == 90){
+            speech("90 Seconds since Dispatch");
+          }else if(seconds > 120){
             $("#secondsDisplay").hide(); 
             clearInterval(secondsOut);
           }
@@ -217,6 +216,16 @@
         var currentTime = new Date().getTime()/1000;
         var seconds = Math.floor(currentTime-dispatchTime);
         return seconds; 
+      }
+
+      function speech(msg){
+        if(localStorage.speek != "false"){
+          $("#speechText").html("Speech is enabled.");
+          msg = new SpeechSynthesisUtterance(msg);
+          window.speechSynthesis.speak(msg);
+        }else{
+          $("#speechText").html("Speech is disabled.");
+        }
       }
     </script>
 
