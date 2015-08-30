@@ -133,6 +133,11 @@
                     <p class="post-meta">Dispatch time Fri Aug 28 20:01:39 EDT 2015</p>
                 </div>
                 <hr>
+                <div id="secondsDisplay" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <h1 id="seconds" class="list-inline text-center"></h1>
+                  <p class="copyright text-muted list-inline text-center">Seconds Since Dispatch</p>
+                  <hr>
+                </div>
             </div>
         </div>
     </div>
@@ -176,6 +181,8 @@
     <script src="js/clean-blog.min.js"></script>
 
     <script>
+      var dispatchTime = new Date().getTime()/1000;
+
       $(document).ready(function(){
         if(localStorage.speek != "false"){
           $("#speechText").html("Speech is enabled.");
@@ -195,7 +202,22 @@
             $("#speechText").html("Speech is enabled.");
           }
         });
+
+        var secondsOut = setInterval(function(){
+          var seconds = sinceDispatch();
+          $("#seconds").html(seconds);
+          if(seconds > 20){
+            $("#secondsDisplay").hide(); 
+            clearInterval(secondsOut);
+          }
+        },1000);
       });
+
+      function sinceDispatch(){
+        var currentTime = new Date().getTime()/1000;
+        var seconds = Math.floor(currentTime-dispatchTime);
+        return seconds; 
+      }
     </script>
 
 </body>
