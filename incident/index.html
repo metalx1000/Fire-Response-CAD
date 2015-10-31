@@ -250,6 +250,7 @@
         if(localStorage.speek != "false"){
           $("#speechText").html("Speech is enabled.");
           msg = new SpeechSynthesisUtterance(msg);
+          msg.lang = 'en-US';
           window.speechSynthesis.speak(msg);
         }else{
           $("#speechText").html("Speech is disabled.");
